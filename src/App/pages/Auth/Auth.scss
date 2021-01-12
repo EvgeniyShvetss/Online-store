@@ -1,0 +1,19 @@
+.auth {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__content {
+    width: 300px;
+  }
+  &__registr-link {
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin-top: 20px;
+  }
+  .login-form-button {
+    width: 100%;
+  }
+}
+
