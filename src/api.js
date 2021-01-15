@@ -9,6 +9,7 @@ function api(url, { body, headers, ...restParams }) {
   })
     .then((res) => {
       if (res.status >= 400) {
+        // eslint-disable-next-line no-alert
         alert(res.status)
         return Promise.reject(res)
       }

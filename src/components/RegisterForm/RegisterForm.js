@@ -1,18 +1,16 @@
 import React from "react"
-import { connect } from "react-redux"
 import { Button, Form, Input } from "antd"
 import { LockOutlined, UserOutlined } from "@ant-design/icons"
+import { Link, useHistory } from "react-router-dom"
 import PropTypes from "prop-types"
-import { Link } from "react-router-dom"
-import { useHistory } from "react-router"
+import { connect } from "react-redux"
 import { registration } from "../../redux/actions/user"
 
 const RegisterForm = ({ registrationAction }) => {
   const history = useHistory()
-
   const onHandleFinish = ({ email, password, name }) => {
     registrationAction(email, password, name).then(() => {
-      history.push("/login")
+      history.push("/")
     })
   }
   return (
@@ -79,7 +77,7 @@ const RegisterForm = ({ registrationAction }) => {
         <Button type="primary" htmlType="submit" className="login-form-button">
           Зарегистрироваться
         </Button>
-        <Link to="/login" className="auth__registr-link">
+        <Link to="/" className="auth__registr-link">
           Войти в акаунт
         </Link>
       </Form.Item>
