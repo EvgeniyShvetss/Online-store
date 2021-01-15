@@ -1,11 +1,10 @@
 import React from "react"
-// import { useForm } from "react-hook-form"
 import { Form, Input, Button } from "antd"
 import { UserOutlined, LockOutlined } from "@ant-design/icons"
 import { Link } from "react-router-dom"
 
 const LoginForm = () => {
-  const onFinish = (values) => {
+  const onHandleFinish = (values) => {
     console.log("Received values of form: ", values)
   }
   return (
@@ -15,16 +14,21 @@ const LoginForm = () => {
       initialValues={{
         remember: true,
       }}
-      onFinish={onFinish}
+      onFinish={onHandleFinish}
     >
       <Form.Item
         name="email"
         rules={[
           {
+            type: "email",
+            message: "The input is not valid E-mail!",
+          },
+          {
             required: true,
-            message: "Please input your Email!",
+            message: "Please input your E-mail!",
           },
         ]}
+        hasFeedback
       >
         <Input
           prefix={<UserOutlined className="site-form-item-icon" />}
@@ -39,8 +43,9 @@ const LoginForm = () => {
             message: "Please input your Password!",
           },
         ]}
+        hasFeedback
       >
-        <Input
+        <Input.Password
           prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
           placeholder="Password"

@@ -20,10 +20,15 @@ const RegisterForm = () => {
         name="email"
         rules={[
           {
+            type: "email",
+            message: "The input is not valid E-mail!",
+          },
+          {
             required: true,
-            message: "Please input your Email!",
+            message: "Please input your E-mail!",
           },
         ]}
+        hasFeedback
       >
         <Input
           prefix={<UserOutlined className="site-form-item-icon" />}
@@ -38,8 +43,9 @@ const RegisterForm = () => {
             message: "Please input your Password!",
           },
         ]}
+        hasFeedback
       >
-        <Input
+        <Input.Password
           prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
           placeholder="Password"

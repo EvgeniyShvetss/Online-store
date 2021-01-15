@@ -1,7 +1,7 @@
 import React from "react"
 import { Route, Switch } from "react-router-dom"
-import RegisterForm from "../../Components/RegisterForm/RegisterForm"
-import LoginForm from "../../Components/LoginForm/LoginForm"
+import RegisterForm from "../../components/RegisterForm/RegisterForm"
+import LoginForm from "../../components/LoginForm/LoginForm"
 import "./Auth.scss"
 
 const Auth = () => (
