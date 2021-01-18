@@ -1,11 +1,19 @@
 import React from "react"
+import { connect } from "react-redux"
 import { Button, Form, Input } from "antd"
 import { LockOutlined, UserOutlined } from "@ant-design/icons"
+import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
+import { useHistory } from "react-router"
+import { registration } from "../../redux/actions/user"
 
-const RegisterForm = () => {
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values)
+const RegisterForm = ({ registrationAction }) => {
+  const history = useHistory()
+
+  const onHandleFinish = ({ email, password, name }) => {
+    registrationAction(email, password, name).then(() => {
+      history.push("/login")
+    })
   }
   return (
     <Form
@@ -14,8 +22,23 @@ const RegisterForm = () => {
       initialValues={{
         remember: true,
       }}
-      onFinish={onFinish}
+      onFinish={onHandleFinish}
     >
+      <Form.Item
+        name="name"
+        rules={[
+          {
+            required: true,
+            message: "Please input your Name!",
+          },
+        ]}
+        hasFeedback
+      >
+        <Input
+          prefix={<UserOutlined className="site-form-item-icon" />}
+          placeholder="Name"
+        />
+      </Form.Item>
       <Form.Item
         name="email"
         rules={[
@@ -56,7 +79,7 @@ const RegisterForm = () => {
         <Button type="primary" htmlType="submit" className="login-form-button">
           Зарегистрироваться
         </Button>
-        <Link to="/" className="auth__registr-link">
+        <Link to="/login" className="auth__registr-link">
           Войти в акаунт
         </Link>
       </Form.Item>
@@ -64,4 +87,12 @@ const RegisterForm = () => {
   )
 }
 
-export default RegisterForm
+RegisterForm.propTypes = {
+  registrationAction: PropTypes.func.isRequired,
+}
+
+const mapDispatchToProps = {
+  registrationAction: registration,
+}
+
+export default connect(null, mapDispatchToProps)(RegisterForm)

@@ -1,11 +1,17 @@
 import React from "react"
+import { connect } from "react-redux"
 import { Form, Input, Button } from "antd"
 import { UserOutlined, LockOutlined } from "@ant-design/icons"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
+import PropTypes from "prop-types"
+import { authenticate } from "../../redux/actions/user"
 
-const LoginForm = () => {
-  const onHandleFinish = (values) => {
-    console.log("Received values of form: ", values)
+const LoginForm = ({ authenticateAction }) => {
+  const history = useHistory()
+  const onHandleFinish = ({ email, password }) => {
+    authenticateAction(email, password).then(() => {
+      history.push("/home")
+    })
   }
   return (
     <Form
@@ -64,4 +70,12 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm
+LoginForm.propTypes = {
+  authenticateAction: PropTypes.func.isRequired,
+}
+
+const mapDispatchToProps = {
+  authenticateAction: authenticate,
+}
+
+export default connect(null, mapDispatchToProps)(LoginForm)
