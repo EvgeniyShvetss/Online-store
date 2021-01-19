@@ -5,12 +5,13 @@ import { Link, useHistory } from "react-router-dom"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { registration } from "../../redux/actions/user"
+import ROUTERS from "../../router"
 
 const RegisterForm = ({ registrationAction }) => {
   const history = useHistory()
   const onHandleFinish = ({ email, password, name }) => {
     registrationAction(email, password, name).then(() => {
-      history.push("/")
+      history.push(ROUTERS.LOGIN)
     })
   }
   return (
@@ -77,7 +78,7 @@ const RegisterForm = ({ registrationAction }) => {
         <Button type="primary" htmlType="submit" className="login-form-button">
           Зарегистрироваться
         </Button>
-        <Link to="/" className="auth__registr-link">
+        <Link to={ROUTERS.LOGIN} className="auth__registr-link">
           Войти в акаунт
         </Link>
       </Form.Item>

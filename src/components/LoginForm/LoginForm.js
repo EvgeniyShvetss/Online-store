@@ -5,13 +5,18 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons"
 import { Link, useHistory } from "react-router-dom"
 import PropTypes from "prop-types"
 import { authenticate } from "../../redux/actions/user"
+import ROUTERS from "../../router"
 
 const LoginForm = ({ authenticateAction }) => {
   const history = useHistory()
   const onHandleFinish = ({ email, password }) => {
-    authenticateAction(email, password).then(() => {
-      history.push("/home")
-    })
+    authenticateAction(email, password)
+      .then((res) => {
+        console.log(res)
+      })
+      .then(() => {
+        history.push(ROUTERS.HOME)
+      })
   }
   return (
     <Form
@@ -63,7 +68,7 @@ const LoginForm = ({ authenticateAction }) => {
           Войти
         </Button>
       </Form.Item>
-      <Link to="/register" className="auth__registr-link">
+      <Link to={ROUTERS.REGISTER} className="auth__registr-link">
         Зарегистрироваться
       </Link>
     </Form>
