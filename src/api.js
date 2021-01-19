@@ -9,7 +9,6 @@ function api(url, { body, headers, ...restParams }) {
   })
     .then((res) => {
       if (res.status >= 400) {
-        alert(res.status)
         return Promise.reject(res)
       }
       return res

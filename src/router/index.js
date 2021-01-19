@@ -1,3 +1,3 @@
-const ROUTER = { LOGIN: "login", HOME: "home", REGISTER: "register" }
+const ROUTERS = { LOGIN: "/login", HOME: "/", REGISTER: "/register" }
 
-export default ROUTER
+export default ROUTERS

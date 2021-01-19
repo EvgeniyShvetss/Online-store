@@ -2,14 +2,18 @@ import React from "react"
 import { Route } from "react-router-dom"
 import "./App.css"
 import "antd/dist/antd.css"
-import Auth from "./pages/Auth"
+import Auth from "./pages/Auth/Auth"
 import Home from "./pages/Home"
-import ROUTER from "./router"
+import ROUTERS from "./router"
 
 const App = () => (
   <div className="App">
-    <Route exact path={["/", "/login", "/register"]} component={Auth} />
-    <Route exact path={`/${ROUTER.HOME}`} component={Home} />
+    <Route
+      exact
+      path={[`${ROUTERS.LOGIN}`, `${ROUTERS.REGISTER}`]}
+      component={Auth}
+    />
+    <Route exact path={ROUTERS.HOME} component={Home} />
   </div>
 )
 
